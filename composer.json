@@ -1,0 +1,13 @@
+{
+    "name": "mrjavaci/instagram-get-information",
+    "type": "project",
+    "require": {
+        "chrome-php/chrome": "^1.4"
+    },
+    "authors": [
+        {
+            "name": "Osman Taha Kıyıcılar",
+            "email": "tr.osmantaha@gmail.com"
+        }
+    ]
+}
