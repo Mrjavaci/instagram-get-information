@@ -22,7 +22,7 @@ class ChromeHelper
     }
 
     /**
-     * @return bool
+     * @return bool *true*
      * @todo handle on error!
      */
     public function loginInstagram()
@@ -71,7 +71,6 @@ class ChromeHelper
                 } else {
                     file_put_contents(StorageDir . $user . "_" . $operation . ".json", $allDataAsJson, JSON_PRETTY_PRINT);
                 }
-
             }
 
             if ($isJson)
@@ -89,6 +88,15 @@ class ChromeHelper
     public function getFollowing($user, $isJson = false)
     {
         return $this->getFollowData("following", $user, $isJson);
+    }
+
+    public function getBaseDataOfUser(string $user)
+    {
+        $page = $this->browser->createPage();
+        $page->navigate("https://instagram.com/" . $user . "/?__a=1")->waitForNavigation(Page::NETWORK_IDLE);
+        $evaluation = $page->callFunction(
+            "function() {\nreturn document.body.textContent;\n}");
+        return $evaluation->getReturnValue();
     }
 
 
